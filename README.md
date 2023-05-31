@@ -28,6 +28,45 @@ Challenge real-time demo!
 - C#?
 - C++?
 
+##### PHP
+
+```bash
+cd sample/php
+XDEBUG_MODE=off composer create-project laravel/laravel example-app
+cd example-app
+XDEBUG_MODE=off php artisan serve
+```
+
+`/api/hello`にアクセスしたときに処理が行われるように記述していきます。
+
+まずは、`routes/api.php`にルーティングを記述します。
+
+```php
+// これは古い書き方
+Route::get('/hello', 'HelloController@hello');
+
+// こちらが現行バージョンの書き方
+Route::get('/hello', [HelloController::class, 'hello']);
+```
+
+インポートも忘れずに。
+
+```php
+use App\Http\Controllers\HelloController;
+```
+
+つぎに、コントローラを作成し、何らかの処理を書きます。
+
+```bash
+XDEBUG_MODE=off php artisan make:controller HelloController
+```
+
+サーバを実行します。
+
+```bash
+XDEBUG_MODE=off php artisan serve
+```
+
 ### For tests
 
 #### Unit tests
