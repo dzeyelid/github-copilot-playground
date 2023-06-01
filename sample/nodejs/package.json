@@ -1,0 +1,8 @@
+{
+  "name": "sample",
+  "version": "1.0.0",
+  "main": "main.js",
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  }
+}

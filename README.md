@@ -2,33 +2,84 @@
 
 Challenge real-time demo!
 
-## Awareness - 気づき
+## デモ
 
-### General - 全般
+### Microsoft Build 2023で紹介されていたポイント
 
-- [ ] ゼロから書き出すときのコツ start from full scratch
-  - コメントの書き方 how to write comments for begining
-  - 先にドキュメントを用意するといいのか prepare document for coding
-- [x] カーソルの前後のコンテキストが考慮されるか prefix and suffix
-- [x] タブに開いていると正確性が増すか tabs
-- [ ] どれくらいのコンテキストが考慮されるのか
+3つのS
 
-### Languages
+- Single
+- Specific
+- Short
+
+### 最初の実験
+
+- [ ] ゼロから書き出してみる
+  - コメントの書き方
+    - 序盤は期待する提案はあまり出てこないので、とりあえず書き出す必要がある
+  - 関数名や変数名
+    - 明確な関数名や変数名にすると、提案も明確になる
+  - 先にドキュメントを用意するといいのか
+    - あまり考慮されなさそう
+- [ ] カーソルの前後のコンテキストが考慮されるか
+  - 前後どちらも考慮される
+- [ ] タブに開いているファイルが考慮されるか
+  - される
+- [ ] コードに内容をもとにREADMEを書く
+
+ヒント
+
+```js
+// 二つの時間を加算する
+// HH:MM:SS形式の文字列を受け取る
+// 1桁の場合は0で埋める
+// addTimeをテストする
+```
+
+### さまざまな言語を試してみる
 
 #### Node.js
 
 - `package.json`はタブに開いていても、あまり考慮されない
 
-#### Front-end(HTML, CSS, framework)
+#### Front-end(HTML, CSS framework)
 
-#### Other languages
+HTMLを書き出してみある
 
-- Regex
-- Python
-- C#?
-- C++?
+```html
+<!DOCTYPE html>
+```
 
-##### PHP
+CSSを書く
+
+```html
+  <style>
+    /* 文字色は */
+
+    /* 背景色は */
+  </style>
+```
+
+Bootstrap 5を導入してみる
+
+```html
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+```
+
+#### Regex
+
+```js
+// セマンティックバージョニングのmajor,minor,patchを分割する正規表現を記述する
+const semverRegex = new RegExp('^v([0-9]+)\.([0-9]+)\.([0-9]+)$')
+
+const ver = 'v1.2.3'
+const matches = semverRegex.exec(ver)
+console.log(matches[1]) // 1
+console.log(matches[2]) // 2
+console.log(matches[3]) // 3
+```
+
+#### PHP
 
 ```bash
 cd sample/php
