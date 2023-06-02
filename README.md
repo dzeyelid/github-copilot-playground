@@ -88,9 +88,23 @@ cd example-app
 XDEBUG_MODE=off php artisan serve
 ```
 
+試しにコントローラを作成し、何らかの処理を書きます。
+
+```bash
+XDEBUG_MODE=off php artisan make:controller HelloController
+```
+
+次に、`routes/api.php`にルーティングを記述します。
+
+まずはコントローラをインポートしておきます。
+
+```php
+use App\Http\Controllers\HelloController;
+```
+
 `/api/hello`にアクセスしたときに処理が行われるように記述していきます。
 
-まずは、`routes/api.php`にルーティングを記述します。
+なお、下記のようにバージョンの違いに留意します。
 
 ```php
 // これは古い書き方
@@ -100,19 +114,7 @@ Route::get('/hello', 'HelloController@hello');
 Route::get('/hello', [HelloController::class, 'hello']);
 ```
 
-インポートも忘れずに。
-
-```php
-use App\Http\Controllers\HelloController;
-```
-
-つぎに、コントローラを作成し、何らかの処理を書きます。
-
-```bash
-XDEBUG_MODE=off php artisan make:controller HelloController
-```
-
-サーバを実行します。
+サーバを実行して確認します。
 
 ```bash
 XDEBUG_MODE=off php artisan serve
