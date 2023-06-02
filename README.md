@@ -118,24 +118,26 @@ XDEBUG_MODE=off php artisan make:controller HelloController
 XDEBUG_MODE=off php artisan serve
 ```
 
-### For tests
-
-#### Unit tests
-
-### For documentation
-
-### Note
-
-- 表示されたURLやシークレットは正しいのか？
-
-## [Appendix] Comparison with GitHub Copilot chat - GitHub Copilot chatとの比較
+## [Appendix] GitHub CopilotとGitHub Copilot chatの比較
 
 - 使いどころの所感
 
-| Copilot | Copilot x |
+| GitHub Copilot | GitHub Copilot chat |
 |----|----|
-| Intelligent code completion（コード補完） | ペアプロ、サポート、直感的 better supportive pair programming |
+| 柔軟なコード補完 | よりペアプロをしているかのような対話型のサポート |
 
 ### [Appendix] OpenAIのCodexと比較してみる
 
-- REST APIでCodexモデルを使てみての所感 with using OpenAI REST API to use Codex model
+OpenAIおよびAzure OpenAIのREST APIでCodexモデル（または後継として推奨されるモデル）を試してみます。
+
+#### OpenAIリファレンス
+
+- [Code completion (deprecated) - OpenAI API](https://platform.openai.com/docs/guides/code/code-completion-deprecated)
+  - [Inserting code](https://platform.openai.com/docs/guides/code/inserting-code)
+  - [Editing code](https://platform.openai.com/docs/guides/code/editing-code)
+- [Chat completion - OpenAI API](https://platform.openai.com/docs/guides/chat)
+
+#### Azure OpenAIリファレンス
+
+- [Codex モデルを使用してコードを操作する方法 - Azure OpenAI Service | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/cognitive-services/openai/how-to/work-with-code)
+- [Azure OpenAI Service の REST API リファレンス - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/cognitive-services/openai/reference)
