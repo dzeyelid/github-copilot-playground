@@ -143,3 +143,5 @@ OpenAIおよびAzure OpenAIのREST APIでCodexモデル（または後継とし�
 
 - [Codex モデルを使用してコードを操作する方法 - Azure OpenAI Service | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/cognitive-services/openai/how-to/work-with-code)
 - [Azure OpenAI Service の REST API リファレンス - Azure OpenAI | Microsoft Learn](https://learn.microsoft.com/ja-jp/azure/cognitive-services/openai/reference)
+
+test
