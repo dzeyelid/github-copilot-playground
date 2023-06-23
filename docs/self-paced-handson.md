@@ -40,7 +40,7 @@ Visual Studio CodeのGitHub Copilot拡張機能については、こちらをご
 
 ## GitHub Copilotと書いてみる
 
-GitHub Copilotは、GPTモデルを利用した「**開発に特化した入力補完**」です。ベースに利用されている[Codex](https://openai.com/blog/openai-codex)はが開発用に調整されたモデルであり、他のGPTモデルに比べて開発作業を邪魔しない速度で応答できる速さが特徴です。
+GitHub Copilotは、GPTモデルを利用した「**開発に特化した入力補完**」です。ベースに利用されている[Codex](https://openai.com/blog/openai-codex)は開発用に調整されたモデルであり、他のGPTモデルに比べて開発作業を邪魔しない速度で応答できる速さが特徴です。
 
 それでは実際にGitHub Copilotを使って、コードを書いてみましょう！
 
@@ -100,7 +100,7 @@ const multiply = (a, b) => a * b;
 const divide = (a, b) => a / b;
 ```
 
-そして、`sub`も略称から変更したいのですが、手で入力するのは面倒なので、GitHub Copilotさせましょう。`const sub`の行の`b`から後ろ（`b = (a, b) => a - b;`）を削除して、再度`b`を入力してみてください。
+そして、`sub`も略称から変更したいのですが、手で入力するのは面倒なので、GitHub Copilotにさせましょう。`const sub`の行の`b`から後ろ（`b = (a, b) => a - b;`）を削除して、再度`b`を入力してみてください。
 
 すると、`sub`ではなく`substract`が提案されたかと思います。
 
@@ -167,15 +167,15 @@ const runTest = (input, expected) => {
 
 他にタブが開いていないことを確認してから、さらに、`runTest('apple',`と書き進めてみると、特に当たり障りのない提案がされます。
 
-![](./images/github-copilot-completion-005.png)
+![文脈が少ないと当たり障りのない提案がされる](./images/github-copilot-completion-005.png)
 
 ここで、`main.js`をタブに開いてから、再度`runTest('apple',`と書き進めてみると、`main.js`の内容を読み取った上で、`apple`に対するテストを書くように提案がされるようになります。
 
-![](./images/github-copilot-completion-006-after-open-tab.png)
+![タブで文脈に含めたいファイルを開いていくと考慮される](./images/github-copilot-completion-006-after-open-tab.png)
 
-そのまま「Tab」で確定していくと、テストの続きが提案され、うまくいけば、その他の場合のテストに対しても適当な`input`が提案されることを確認できるかもしれません。（※これらのコンテンツは、ハンズオン用に明確に候補が出るように調整していますが、実際の開発では内容により確定的に正しい提案がされるわけではありません）
+そのまま「Tab」で確定していくと、テストの続きが提案され、うまくいけば、その他の場合のテストに対しても適当な`input`が提案されることを確認できるかもしれません。（※これらのコンテンツは、ハンズオン用に明確に候補が出るように調整していますが、実際の開発では必ずしも正しい提案がされるわけではありません）
 
-![](./images/github-copilot-completion-007-after-open-tab.png)
+![タブで開いたファイルの文脈が考慮されていることがわかる](./images/github-copilot-completion-007-after-open-tab.png)
 
 ### 編集中のファイルパスや言語が優先される
 
