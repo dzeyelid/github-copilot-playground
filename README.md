@@ -4,7 +4,10 @@ GitHub Copilotのデモやハンズオンの資料を置くリポジトリです
 
 ## セルフペースド ハンズオン
 
-セルフペースド ハンズオンは、[docs/self-paced-handson.md](./docs/self-paced-handson.md)にお進みください。
+セルフペースド ハンズオンは、ボリュームに応じて2種類あります。
+
+- [ショート版（15分）](./docs/self-paced-handson/short.md)
+- [拡大版](./docs/self-paced-handson/advanced.md)
 
 ## 過去のデモ資料
 
