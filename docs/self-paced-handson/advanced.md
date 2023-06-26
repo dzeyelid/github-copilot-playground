@@ -1,10 +1,120 @@
 # セルフペースド ハンズオン資料
 
-## 
+このドキュメントは、[GitHub Copilotとの強力なタッグをいち早く取り入れるハンズオン](https://microsoft-events.connpass.com/event/286473/)で使用する資料です。
 
-### 作業ディレクトリを用意する
+今注目のGitHub Copilotを、実際にどのように動くか手を動かして体験することで、仕組みとコツを体得するためのハンズオンです。
 
-### HTMLを準備する
+## ハンズオンを進めるための準備
+
+ライセンスをすでにお持ちの方はそのままお進みいただけます。
+
+ライセンスをお持ちでない方は、スタッフが用意した「GitHub Copilot for Business」を適用できるOrganizationに招待するので、GitHubアカウントをスタッフにお伝えください。
+
+Organizationに招待されるとメールで通知が届くので、文面に従い必ず承諾してください。承諾が済んだ後、しばらくするとGitHub Copilotのアクセスが有効になります。
+
+## 座学
+
+### GitHub Copilotとは
+
+GitHub Copilotは、GPTモデルを利用した「**開発に特化したAIによる入力補完**」です。
+
+ベースに利用されている[Codex](https://openai.com/blog/openai-codex)は開発用に調整されたモデルであり、他のGPTモデルに比べて開発作業を邪魔しない速度で応答できる速さが特徴です。
+
+### ライセンスについて
+
+GitHub Copilotは、個人向けに「for Individuals」を、業務利用向けに「for Business」のライセンスを提供しています。
+
+自身のライセンスの状況は、GitHubのアカウントのSettingsから確認できます。
+
+![GitHubアカウントのメニューを開く](../images/github-account-menu.png)
+
+![GitHubアカウントのメニューのSettingsを開く](../images/github-account-menu-settings.png)
+
+まだどちらのライセンスも適用されていない場合はこのように「Free trial」への案内が表示されます。
+
+![GitHubアカウントのSettingsで、Copilotのライセンス状況を確認する（まだ契約前の状態）](../images/github-settings-copilot-for-individuals-before-use.png)
+
+「for Business」の場合は、このように設定がオーバーライドされる形で適用されます。
+
+![GitHub Copilot for Businessが適用されている場合の表示](../images/github-settings-copilot-for-business-applied.png)
+
+各ライセンスの詳細は、以下のドキュメントをご参照ください。
+
+- [GitHub Copilot for Individuals について - GitHub Docs](https://docs.github.com/ja/copilot/overview-of-github-copilot/about-github-copilot-for-individuals)
+- [GitHub Copilot for Business について - GitHub Docs](https://docs.github.com/ja/copilot/overview-of-github-copilot/about-github-copilot-for-business)
+
+### データの扱いと設定
+
+GitHub Copilotを利用するにあたり、いくつかのデータの送受信が行われます。
+
+| GitHub Copilotで扱われるデータの種類 | 説明 |
+|----|----|
+| **User Engagement Data** | 提案の採用/却下などのアクション、メトリックやエラーなど一般的な使用状況 |
+| **Prompts** | 入力している内容、カーソルの前後のコードやコメント、開いているタブの内容 |
+| Suggestions | GitHub Copilotによる提案 |
+
+このうち、「コードやドキュメントのデータ」に関して、「学習に使われたり予期せぬ場所の保存されたりしないか」を心配される声をよくお聞きします。これは、**Prompts**に該当し、Promptsの扱いについては利用者が制御できます。
+
+「for Business」の場合は、Promptsを一切保持しません。GitHubに渡されたPromptsは、提案の生成が終わったらすぐに破棄されます。
+
+また、「for Indivisuals」の場合は、設定の「Allow GitHub to use my code snippets for product improvements」にて許可または拒否を選択できます。
+
+![GitHub Copilotで扱われるデータ](../images/github-copilot-data-001.png)
+
+![サービスのために利用されるデータとユーザーが制御できるデータ](../images/github-copilot-data-002.png)
+
+### サポートされる環境
+
+GitHub Copilotは、ライセンスだけあっても使えません。実際に利用するには、サポートされるエディタまたはIDEに「**拡張機能**」を導入する必要があります。
+
+サポートされるエディタ/IDEは以下の通りです。
+
+- Visual Studio Code
+- Visual Studio
+- Vim/Neovim
+- JetBrains IDEs (beta)
+
+Visual Studio Codeの場合はこの拡張機能を利用します。
+
+- [GitHub Copilot - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+![インストールされたGitHub Copilotの拡張機能を確認する](../images/installed-github-copilot-extension.png)
+
+また、コードを書いている間は、右下にGitHub Copilotのアイコンが表示されていることを確認してください。提案を返そうとする間は回転するマークの表示になります。なお、アイコンの背景が暗い黄色の場合はDeactive（無効）になっているので、クリックしてActive（有効）にしてください。
+
+![右下に表示されるGitHub Copilotアイコン](../images/github-copilot-icon-enabled.png)
+
+詳しくは、以下のドキュメントをご参照ください。
+
+- [GitHub Copilot の概要 - GitHub Docs](https://docs.github.com/ja/copilot/getting-started-with-github-copilot)
+
+## 手を動かしてみる！
+
+[短縮版](./short.md)の「[ゼロから書き出してみる](./short.md#ゼロから書き出してみる)」を参照し、GitHub Copilotの基本を学びましょう。
+
+また、以下のポイントも確認しておきます。（後続の章で手を動かしながら解説します）
+
+- [タブで開いたファイルもコンテキストに含まれる](./short.md#タブで開いたファイルもコンテキストに含まれる)
+- [編集中のファイルパスや言語が優先される](./short.md#編集中のファイルパスや言語が優先される)
+
+### もっと複雑なコードに挑戦してみる
+
+もう少し複雑なコードに挑戦してみましょう。JavaScriptで描画を行える`p5.js`を利用して、オセロゲームを作ってみます。
+
+#### 作業ディレクトリを確認する
+
+`sample/game`ディレクトリにあるファイルを使って、オセロゲームを作っていきます。
+
+```bash
+├── index.html      # ゲームを描画するHTMLファイル
+├── logic.js        # ゲームロジックを記述したJavaScriptファイル
+├── references      # リファレンス（詰まったとき用）
+│   ├── example.js  
+│   └── index.html
+└── sketch.js       # ゲームの描画処理を記述するJavaScriptファイル
+```
+
+#### HTMLを準備する
 
 以下のように書き出してみましょう。
 
@@ -54,7 +164,7 @@
 
 - [get started | p5.js](https://p5js.org/get-started/#settingUp)
 
-### 描画処理を記述する
+#### 描画処理を記述する
 
 さて、描画処理を記述していきます。`sketch.js`に以下を転記します。（コピー＆ペーストでOKです）
 
@@ -102,23 +212,3 @@ function setup() {
 もし詰まってしまったら、`references/example.js`を参考にしてみてください。タブで開くと、GitHub Copilotが読み込んで完全なチートになってしまうかもしれないので、開いたら閉じるか、ブラウザの方でひらくとよいでしょう。
 
 また、ここで用意したリファレンスは最低限の動作しかしません。時間の許す限り、GitHub Copilotと協力してゲームのクオリティを突き詰めるのも一興です🧙🏻
-
-
-- まずOrg招待
-- 最初10分くらいはライセンスが浸透しないかもしれない
-- エディタの紹介
-- 扱われるデータの話
-- ライセンスの話
-- shortをベースに
-  - コメント
-  - 変数名、関数名
-  - FIM
-  - ドキュメンテーション
-  - タブ
-  - 優先度
-    - 別の拡張子のファイルに書かれた情報より、同じ拡張子のファイルのコメントの方が優先されるらしいこと
-  - SQL?
-  - yaml (GitHub Actions)
-  - Bicep/ARM template
-  - Terraform
-  - KQL

@@ -12,11 +12,11 @@ GitHub Copilotを利用するにはまず、個人向けの場合は「for Indiv
 
 本ハンズオンでは、端末でサインイン済みの各アカウントに対して「for Business」のライセンスを割り当てており、GitHubアカウントの設定から確認することができます。
 
-![GitHubアカウントのメニューを開く](./images/github-account-menu.png)
+![GitHubアカウントのメニューを開く](../images/github-account-menu.png)
 
-![GitHubアカウントのメニューのSettingsを開く](./images/github-account-menu-settings.png)
+![GitHubアカウントのメニューのSettingsを開く](../images/github-account-menu-settings.png)
 
-![GitHubアカウントのSettingsで、Copilotのライセンス状況を確認する](./images/github-settings-copilot.png)
+![GitHubアカウントのSettingsで、Copilotのライセンス状況を確認する](../images/github-settings-copilot-for-business-applied.png)
 
 ### エディタの拡張機能を確認する
 
@@ -24,11 +24,11 @@ GitHub Copilotを利用するには、サポートされたエディタ・IDEに
 
 本ハンズオンでは、Visual Studio Codeで準備をしています。拡張機能の画面で、「GitHub Copilot」の拡張機能がインストール済みであることが確認できます。
 
-![インストールされたGitHub Copilotの拡張機能を確認する](./images/installed-github-copilot-extension.png)
+![インストールされたGitHub Copilotの拡張機能を確認する](../images/installed-github-copilot-extension.png)
 
 また、コードを書いている間は、右下にGitHub Copilotのアイコンが表示されていることを確認してください。提案を返そうとする間は回転するマークの表示になります。なお、アイコンの背景が暗い黄色の場合はDeactive（無効）になっているので、クリックしてActive（有効）にしてください。
 
-![右下に表示されるGitHub Copilotアイコン](./images/github-copilot-icon-enabled.png)
+![右下に表示されるGitHub Copilotアイコン](../images/github-copilot-icon-enabled.png)
 
 Visual Studio CodeのGitHub Copilot拡張機能については、こちらをご参照ください。
 
@@ -48,10 +48,7 @@ GitHub Copilotは、GPTモデルを利用した「**開発に特化した入力�
 
 コメントや関数や変数など名前が提案生成の要素となるので、意識して書いてみましょう。
 
-作業用に、ハンズオンのタイムスケジュールごとにディレクトリを用意しています。もしくは、任意のディレクトリを作成し作業を進めてください。
-
-- 13:00開始 → `C:\projects\handson-1300`
-- 15:00開始 → `C:\projects\handson-1500`
+任意のディレクトリを作成し作業を進めてください。
 
 `main.js`ファイルを作成し、以下のようなコードを書いてみます。GitHub Copilotの動きを体験できるように、コピー＆ペーストではなく、入力してみてください。
 
@@ -63,13 +60,13 @@ const add
 
 ちょうど書き終わるころ、下図のように`const add`の後ろに候補が表示されるのがわかりますか？
 
-![GitHub Copilotによる候補が表示された](./images/github-copilot-completion-001.png)
+![GitHub Copilotによる候補が表示された](../images/github-copilot-completion-001.png)
 
 これがGitHub Copilotによる候補です。確定するには、「Tab」キーを入力してください。却下（無視）するには「Esc」キーでクリアできます。
 
 また、候補がいくつかある場合はオンカーソルで選択ウィンドウが表示されるのでそれを操作するか、キーボードショートカットでも候補の切り替えが可能です。
 
-![候補が複数ある場合は選択できる](./images/github-copilot-completion-002.png)
+![候補が複数ある場合は選択できる](../images/github-copilot-completion-002.png)
 
 | OS | 	次の候補を表示 | 前の候補を表示 |
 |----|----|----|
@@ -104,13 +101,13 @@ const divide = (a, b) => a / b;
 
 すると、`sub`ではなく`substract`が提案されたかと思います。
 
-![カーソルの後ろの文脈も含めて提案される](./images/github-copilot-completion-003.png)
+![カーソルの後ろの文脈も含めて提案される](../images/github-copilot-completion-003.png)
 
 このように、編集しているカーソルの位置の上方の文脈だけでなく、下方の文脈も考慮して提案が生成されていることがわかります。これは、FIM（Fill-in-the-Middle）という手法が採用されているためです。
 
 また、各行にコメントを挿入していく作業なども、GitHub Copilotの提案がとても便利です。
 
-![GitHub Copilotはコメントの挿入でも活躍する](./images/github-copilot-completion-004.png)
+![GitHub Copilotはコメントの挿入でも活躍する](../images/github-copilot-completion-004.png)
 
 それから、コードだけでなくドキュメンテーションでもGitHub Copilotは便利です。`README.md`ファイルを作成して、以下のような内容を書きすすめてみましょう。
 
@@ -167,15 +164,15 @@ const runTest = (input, expected) => {
 
 他にタブが開いていないことを確認してから、さらに、`runTest('apple',`と書き進めてみると、特に当たり障りのない提案がされます。
 
-![文脈が少ないと当たり障りのない提案がされる](./images/github-copilot-completion-005.png)
+![文脈が少ないと当たり障りのない提案がされる](../images/github-copilot-completion-005.png)
 
 ここで、`main.js`をタブに開いてから、再度`runTest('apple',`と書き進めてみると、`main.js`の内容を読み取った上で、`apple`に対するテストを書くように提案がされるようになります。
 
-![タブで文脈に含めたいファイルを開いていくと考慮される](./images/github-copilot-completion-006-after-open-tab.png)
+![タブで文脈に含めたいファイルを開いていくと考慮される](../images/github-copilot-completion-006-after-open-tab.png)
 
 そのまま「Tab」で確定していくと、テストの続きが提案され、うまくいけば、その他の場合のテストに対しても適当な`input`が提案されることを確認できるかもしれません。（※これらのコンテンツは、ハンズオン用に明確に候補が出るように調整していますが、実際の開発では必ずしも正しい提案がされるわけではありません）
 
-![タブで開いたファイルの文脈が考慮されていることがわかる](./images/github-copilot-completion-007-after-open-tab.png)
+![タブで開いたファイルの文脈が考慮されていることがわかる](../images/github-copilot-completion-007-after-open-tab.png)
 
 ### 編集中のファイルパスや言語が優先される
 
