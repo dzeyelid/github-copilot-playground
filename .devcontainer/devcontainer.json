@@ -3,7 +3,8 @@
   "customizations": {
     "vscode": {
       "extensions": [
-        "GitHub.copilot"
+        "GitHub.copilot",
+        "ms-vscode.live-server"
       ]
     }
   }
