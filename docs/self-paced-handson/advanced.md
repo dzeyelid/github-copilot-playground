@@ -10,7 +10,9 @@
 
 ライセンスをすでにお持ちの方はそのままお進みいただけます。
 
-ライセンスをお持ちでない方は、スタッフが用意した「GitHub Copilot for Business」を適用できるOrganizationに招待するので、GitHubアカウントをスタッフにお伝えください。
+ライセンスをお持ちでない方は、スタッフが用意した「GitHub Copilot for Business」を適用できるOrganizationに招待するので、下記のissueにコメントする形で、GitHubアカウントをスタッフにお伝えください。
+
+- [GitHub Copilotアカウント申請用issue](https://github.com/handson-202306/build-japna-2023-H1-2/issues/1)
 
 Organizationに招待されるとメールで通知が届くので、文面に従い必ず承諾してください。承諾が済んだ後、しばらくするとGitHub Copilotのアクセスが有効になります。
 
