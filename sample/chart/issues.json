@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "title": "Issue 1",
+    "description": "Issue 1 description",
+    "status": "todo",
+    "assignee": "John Doe",
+    "created": "2023-06-16",
+    "closed": "2023-06-17"
+  },
+  {
+    "id": 2,
+    "title": "Issue 2",
+    "description": "Issue 2 description",
+    "status": "in progress",
+    "assignee": "Jane Smith",
+    "created": "2023-06-16",
+    "closed": null
+  },
+  {
+    "id": 3,
+    "title": "Issue 3",
+    "description": "Issue 3 description",
+    "status": "done",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": "2023-06-30"
+  },
+  {
+    "id": 4,
+    "title": "Issue 4",
+    "description": "Issue 4 description",
+    "status": "todo",
+    "assignee": "John Doe",
+    "created": "2023-06-16",
+    "closed": "2023-06-19"
+  },
+  {
+    "id": 5,
+    "title": "Issue 5",
+    "description": "Issue 5 description",
+    "status": "in progress",
+    "assignee": "Jane Smith",
+    "created": "2023-06-16",
+    "closed": null
+  },
+  {
+    "id": 6,
+    "title": "Issue 6",
+    "description": "Issue 6 description",
+    "status": "done",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": null
+  },
+  {
+    "id": 7,
+    "title": "Issue 7",
+    "description": "Issue 7 description",
+    "status": "done",
+    "assignee": "John Doe",
+    "created": "2023-06-16",
+    "closed": "2023-06-21"
+  },
+  {
+    "id": 8,
+    "title": "Issue 8",
+    "description": "Issue 8 description",
+    "status": "done",
+    "assignee": "Jane Smith",
+    "created": "2023-06-21",
+    "closed": "2023-06-23"
+  },
+  {
+    "id": 9,
+    "title": "Issue 9",
+    "description": "Issue 9 description",
+    "status": "done",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": "2023-06-30"
+  },
+  {
+    "id": 10,
+    "title": "Issue 10",
+    "description": "Issue 10 description",
+    "status": "done",
+    "assignee": "John Doe",
+    "created": "2023-06-20",
+    "closed": "2023-06-28"
+  },
+  {
+    "id": 11,
+    "title": "Issue 11",
+    "description": "Issue 11 description",
+    "status": "done",
+    "assignee": "Jane Smith",
+    "created": "2023-06-25",
+    "closed": "2023-06-29"
+  },
+  {
+    "id": 12,
+    "title": "Issue 12",
+    "description": "Issue 12 description",
+    "status": "in progress",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": null
+  },
+  {
+    "id": 13,
+    "title": "Issue 13",
+    "description": "Issue 13 description",
+    "status": "done",
+    "assignee": "John Doe",
+    "created": "2023-06-18",
+    "closed": "2023-06-20"
+  },
+  {
+    "id": 14,
+    "title": "Issue 14",
+    "description": "Issue 14 description",
+    "status": "done",
+    "assignee": "Jane Smith",
+    "created": "2023-06-20",
+    "closed": "2023-06-24"
+  },
+  {
+    "id": 15,
+    "title": "Issue 15",
+    "description": "Issue 15 description",
+    "status": "todo",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": null
+  },
+  {
+    "id": 16,
+    "title": "Issue 16",
+    "description": "Issue 16 description",
+    "status": "done",
+    "assignee": "John Doe",
+    "created": "2023-06-19",
+    "closed": "2023-06-24"
+  },
+  {
+    "id": 17,
+    "title": "Issue 17",
+    "description": "Issue 17 description",
+    "status": "done",
+    "assignee": "Jane Smith",
+    "created": "2023-06-17",
+    "closed": "2023-06-25"
+  },
+  {
+    "id": 18,
+    "title": "Issue 18",
+    "description": "Issue 18 description",
+    "status": "done",
+    "assignee": "Bob Johnson",
+    "created": "2023-06-30",
+    "closed": "2023-06-30"
+  },
+  {
+    "id": 19,
+    "title": "Issue 19",
+    "description": "Issue 19 description",
+    "status": "done",
+    "assignee": "John Doe",
+    "created": "2023-06-16",
+    "closed": "2023-06-30"
+  },
+  {
+    "id": 20,
+    "title": "Issue 20",
+    "description": "Issue 20 description",
+    "status": "done",
+    "assignee": "Jane Smith",
+    "created": "2023-06-16",
+    "closed": "2023-06-18"
+  }
+]
