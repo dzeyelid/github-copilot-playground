@@ -1,0 +1,59 @@
+# GitHub Actionsでsample/chart/appのAstroのアプリケーションをGitHub Pagesにデプロイする
+# - 契機は、以下の通り
+#   - mainブランチにプッシュされたとき
+#   - 手動で実行したとき
+# - 使用するアクションは、以下の通り
+#   - actions/checkout@v3
+#   - actions/setup-node@v2
+#   - actions/configure-pages@v3
+#   - actions/upload-pages-artifact@v1
+#   - actions/deploy-pages@v2
+# - 手順
+#   - Node.jsの環境をセットアップする
+#     - v18
+#   - Astroのアプリケーションのビルドを行う
+#   - GitHub Pagesをセットアップする
+#   - ビルドしたAstroのアプリケーションをGitHub Pages用にアップロードする
+#   - アップロードされたアプリケーションをGitHub Pagesにデプロイする
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  # 作業ディレクトリ
+  WORK_DIR: sample/chart/app
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # 作業ディレクトリを指定する
+    defaults:
+      run:
+        working-directory: ${{ env.WORK_DIR }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
+      - name: Build Astro app
+        run: npm install && npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Upload Astro app
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ env.WORK_DIR }}/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
