@@ -12,6 +12,6 @@
   "dependencies": {
     "astro": "^2.7.2",
     "chart.js": "^4.3.0",
-    "dayjs": "^1.11.9"
+    "date-fns": "^2.30.0"
   }
 }

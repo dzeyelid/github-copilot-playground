@@ -41,20 +41,15 @@
     <canvas id="chart"></canvas>
     <script>
       import Chart from 'chart.js/auto'
-      import isBetween from 'dayjs/plugin/isBetween'
-      import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-      import * as dayjs from 'dayjs'
-
-      dayjs.extend(isBetween)
-      dayjs.extend(isSameOrBefore)
+      import { add, compareAsc, format, isSameDay } from 'date-fns'
 
       // データを取得する
       const response = await fetch('https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json')
       const issues = await response.json()
 
       // チャートの期間を設定する
-      const startDate = dayjs('2023-06-16')
-      const endDate = dayjs('2023-06-30')
+      const startDate = new Date('2023-06-16')
+      const endDate = new Date('2023-06-30')
 
       // 期間中、日毎に、開始時点からその日までのclosedの累計を算出する
       // {
@@ -62,13 +57,17 @@
       //    count: number
       // }
       const data = []
-      for (let date = startDate; date.isSameOrBefore(endDate); date = date.add(1, 'day')) {
+      for (let date = startDate; compareAsc(date, endDate) <= 0; date = add(date, { days: 1 })) {
         const count = issues.filter(issue => {
-          return dayjs(issue.closed).isSameOrBefore(date)
+          if (issue.closed === null) {
+            return false
+          }
+          const closed = new Date(issue.closed)
+          return isSameDay(date, closed) || compareAsc(date, closed) > 0
         }).length
         data.push({
-          date: date.format('YYYY-MM-DD'),
-          count: count
+          date: format(date, 'yyyy-MM-dd'),
+          count
         })
       }
 

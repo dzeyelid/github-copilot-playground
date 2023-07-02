@@ -107,14 +107,10 @@ npm install
 ```html
 <script>
   import Chart from 'chart.js/auto'
-  import isBetween from 'dayjs/plugin/isBetween'
-  import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
-  import * as dayjs from 'dayjs'
-
-  dayjs.extend(isBetween)
-  dayjs.extend(isSameOrBefore)
+  import { add, compareAsc, format, isSameDay } from 'date-fns'
 
   // データを取得する
+</script>
 ```
 
 `// データを取得する`のあとから、GitHub Copilotと対話を進めていきましょう。以下のような記述になるとよいです。
@@ -125,8 +121,8 @@ const response = await fetch('https://raw.githubusercontent.com/dzeyelid/github-
 const data = await response.json()
 
 // チャートの期間を設定する
-const start = dayjs('2023-06-16')
-const end = dayjs('2023-06-30')
+const start = new Date('2023-06-16')
+const end = new Date('2023-06-30')
 
 ```
 
@@ -148,7 +144,18 @@ const end = dayjs('2023-06-30')
 
 `Chart`のインスタンスを生成するコードが提案されると思います。ポイントは、第二引数に渡すオブジェクトで、`data.labels`に上記の`date`を抽出した配列を、`data.datasets.[].data`に上記の`count`を抽出した配列を渡します。
 
-コードが書けたら、実行してみましょう。先ほど移動したディレクトリ`sample/chart/app`で、以下のコマンドを実行します。（※
+コードが書けたら、実行してみましょう。
+
+ローカルで動かせるように、`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`をコメントアウトしてください。
+
+```js
+export default defineConfig({
+  // site: 'https://dzeyelid.github.io'
+  // base: 'github-copilot-playground'
+});
+```
+
+つぎに、先ほど移動したディレクトリ`sample/chart/app`で、以下のコマンドを実行します。
 
 ```bash
 npm run dev -- --host 0.0.0.0
@@ -160,3 +167,45 @@ npm run dev -- --host 0.0.0.0
 
 ## GitHub Pagesにデプロイする
 
+`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`をご自身の環境に合わせて更新してください。
+
+```js
+export default defineConfig({
+  site: 'https://dzeyelid.github.io'
+  base: 'github-copilot-playground'
+});
+```
+
+```yml
+# GitHub Actionsでsample/chart/appのAstroのアプリケーションをGitHub Pagesにデプロイする
+# - 契機は、以下の通り
+#   - mainブランチにプッシュされたとき
+#   - 手動で実行したとき
+# - 使用するアクションは、以下の通り
+#   - actions/checkout@v3
+#   - actions/configure-pages@v3
+#   - actions/upload-pages-artifact@v1
+#   - actions/deploy-pages@v2
+# - 手順
+#   - Astroのアプリケーションのビルドを行う
+#   - ビルドしたAstroのアプリケーションをGitHub Pages用にアップロードする
+#   - アップロードされたアプリケーションをGitHub Pagesにデプロイする
+```
+
+```yml
+  jobs:
+    deploy:
+      runs-on: ubuntu-latest
++     # 作業ディレクトリを指定する
+```
+
+```yml
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build
+        run: npm run build
+
+      # GitHub Pagesをセットアップする
+```
