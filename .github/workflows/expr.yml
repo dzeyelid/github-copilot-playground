@@ -28,6 +28,11 @@ env:
   # 作業ディレクトリ
   WORK_DIR: sample/chart/app
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
