@@ -167,7 +167,7 @@ npm run dev -- --host 0.0.0.0
 
 ## GitHub Pagesにデプロイする
 
-`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`をご自身の環境に合わせて更新してください。
+`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`をご自身の環境に合わせて更新しておいてください。
 
 ```js
 export default defineConfig({
@@ -176,6 +176,10 @@ export default defineConfig({
 });
 ```
 
+つぎに、GitHub Actionsのワークフローを記述します。
+
+`.github/workflows`の配下に`deploy-chart.yml`を作成します。そこに下記の仕様を記述したコメントを貼り付けます。
+
 ```yml
 # GitHub Actionsでsample/chart/appのAstroのアプリケーションをGitHub Pagesにデプロイする
 # - 契機は、以下の通り
@@ -183,14 +187,30 @@ export default defineConfig({
 #   - 手動で実行したとき
 # - 使用するアクションは、以下の通り
 #   - actions/checkout@v3
+#   - actions/setup-node@v2
 #   - actions/configure-pages@v3
 #   - actions/upload-pages-artifact@v1
 #   - actions/deploy-pages@v2
+# - permissionsは、以下の通り
+#   - コンテンツの読み取り可能
+#   - ページの書き込み可能
+#   - IDトークンの書き込み可能
+# - 環境変数は、以下の通り
+#   - 作業ディレクトリ
 # - 手順
+#   - Node.jsの環境をセットアップする
+#     - v18
 #   - Astroのアプリケーションのビルドを行う
+#   - GitHub Pagesをセットアップする
 #   - ビルドしたAstroのアプリケーションをGitHub Pages用にアップロードする
+#     - actions/upload-pages-artifact
 #   - アップロードされたアプリケーションをGitHub Pagesにデプロイする
+#     - actions/deploy-pages
 ```
+
+改行して書き進めていきましょう。
+
+コマンド実行時の作業ディレクトリを指定するには、`jobs.<job_id>`の配下に以下のようなコメントを書いて、Copilotに記述させると楽です。
 
 ```yml
   jobs:
@@ -199,13 +219,63 @@ export default defineConfig({
 +     # 作業ディレクトリを指定する
 ```
 
+`jobs.<job_id>.steps`配下は、チェックアウトやビルドなどの手順は、GitHub Copilotが記述してくれるでしょう。
+
+GitHub Pagesに関わる部分は、あまり適した提案がなされないようなので、ドキュメントを見ながら記述していきます。
+
+- [GitHub Pages でのカスタム ワークフローの使用 - GitHub Docs](https://docs.github.com/ja/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages)
+
+最終的にこのようなワークフローに書き上げます。
+
 ```yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  # 作業ディレクトリ
+  WORK_DIR: sample/chart/app
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    # 作業ディレクトリを指定する
+    defaults:
+      run:
+        working-directory: ${{ env.WORK_DIR }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Build
-        run: npm run build
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
 
-      # GitHub Pagesをセットアップする
+      - name: Build Astro app
+        run: npm install && npm run build
+
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3
+      
+      - name: Upload Astro app
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ${{ env.WORK_DIR }}/dist
+
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v2
 ```
+
+ここまで準備できたら、リポジトリにプッシュしましょう。（※ ここではハンズオンのため`main`リポジトリに直接プッシュします）
+
+GitHub Actionsのワークフローの実行が終わったら、リポジトリの「Settings」の「Pages」からデプロイされたURLを確認し、アクセスして動作を確認してみましょう。
