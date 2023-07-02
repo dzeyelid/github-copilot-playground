@@ -34,11 +34,11 @@
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
   <body>
     <h1>Astro</h1>
-    <canvas id ="chart"></canvas>
+    <!-- チャートを描画する -->
+    <canvas id="chart"></canvas>
     <script>
       import Chart from 'chart.js/auto'
       import isBetween from 'dayjs/plugin/isBetween'
@@ -49,42 +49,41 @@
       dayjs.extend(isSameOrBefore)
 
       // データを取得する
-      const url = 'https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json'
-      const response = await fetch(url)
-      const data = await response.json()
+      const response = await fetch('https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json')
+      const issues = await response.json()
 
-      // 期間を設定する
-      const start = dayjs('2023-06-16')
-      const end = dayjs('2023-06-30')
+      // チャートの期間を設定する
+      const startDate = dayjs('2023-06-16')
+      const endDate = dayjs('2023-06-30')
 
-      // 期間中、開始時点からのclosedの累計を集計する
+      // 期間中、日毎に、開始時点からその日までのclosedの累計を算出する
       // {
-      //  date: string,
-      //  count: number
+      //    date: string,
+      //    count: number
       // }
-      const closedCount = []
-      for (let date = start; date.isSameOrBefore(end); date = date.add(1, 'day')) {
-        const count = data.filter(item => {
-          return dayjs(item.closed).isBetween(start, date, 'day')
+      const data = []
+      for (let date = startDate; date.isSameOrBefore(endDate); date = date.add(1, 'day')) {
+        const count = issues.filter(issue => {
+          return dayjs(issue.closed).isSameOrBefore(date)
         }).length
-        closedCount.push({
+        data.push({
           date: date.format('YYYY-MM-DD'),
           count: count
         })
       }
 
       // バーンアップチャートを描画する
-      const ctx = document.getElementById('chart').getContext('2d')
+      const ctx = document.getElementById('chart')
       const chart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: closedCount.map(item => item.date),
+          labels: data.map(d => d.date),
           datasets: [
             {
-              label: 'closed',
-              data: closedCount.map(item => item.count),
+              label: 'Closed',
+              data: data.map(d => d.count),
               borderColor: 'rgba(255, 99, 132, 1)',
-              backgroundColor: 'rgba(255, 99, 132, 0.2)'
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
             }
           ]
         },
@@ -92,7 +91,7 @@
           scales: {
             y: {
               beginAtZero: true,
-              max: data.length
+              max: issues.length
             }
           }
         }
