@@ -1,0 +1,102 @@
+---
+/**
+ * Chart.jsを使ってバーンアップチャートを作成する
+ * - 元になるデータ
+ *   - 以下のようなJSON形式
+ *     ```
+ *     [
+ *       {
+ *         "id": 1,
+ *         "title": "Issue 1",
+ *         "description": "Issue 1 description",
+ *         "status": "todo",
+ *         "assignee": "John Doe",
+ *         "created": "2023-06-01",
+ *         "closed": null
+ *       }
+ *     ]
+ *     ```
+ *   - 以下からダウンロードする
+ *     - https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json
+ * - チャートの期間は、2023/6/16から2023/6/30までとする
+ * - y軸
+ *   - 最大値はアイテムの個数とする
+ *   - 日付におけるclosedの累計の個数を示す
+ * - x軸
+ *   - 日付を示す  
+*/
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <canvas id ="chart"></canvas>
+    <script>
+      import Chart from 'chart.js/auto'
+      import isBetween from 'dayjs/plugin/isBetween'
+      import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+      import * as dayjs from 'dayjs'
+
+      dayjs.extend(isBetween)
+      dayjs.extend(isSameOrBefore)
+
+      // データを取得する
+      const url = 'https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json'
+      const response = await fetch(url)
+      const data = await response.json()
+
+      // 期間を設定する
+      const start = dayjs('2023-06-16')
+      const end = dayjs('2023-06-30')
+
+      // 期間中、開始時点からのclosedの累計を集計する
+      // {
+      //  date: string,
+      //  count: number
+      // }
+      const closedCount = []
+      for (let date = start; date.isSameOrBefore(end); date = date.add(1, 'day')) {
+        const count = data.filter(item => {
+          return dayjs(item.closed).isBetween(start, date, 'day')
+        }).length
+        closedCount.push({
+          date: date.format('YYYY-MM-DD'),
+          count: count
+        })
+      }
+
+      // バーンアップチャートを描画する
+      const ctx = document.getElementById('chart').getContext('2d')
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: closedCount.map(item => item.date),
+          datasets: [
+            {
+              label: 'closed',
+              data: closedCount.map(item => item.count),
+              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'rgba(255, 99, 132, 0.2)'
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: data.length
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
