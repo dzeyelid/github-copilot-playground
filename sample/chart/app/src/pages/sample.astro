@@ -1,0 +1,101 @@
+---
+/**
+ * Chart.jsを使ってバーンアップチャートを作成する
+ * - 元になるデータ
+ *   - 以下のようなJSON形式
+ *     ```
+ *     [
+ *       {
+ *         "id": 1,
+ *         "title": "Issue 1",
+ *         "description": "Issue 1 description",
+ *         "status": "todo",
+ *         "assignee": "John Doe",
+ *         "created": "2023-06-01",
+ *         "closed": null
+ *       }
+ *     ]
+ *     ```
+ *   - 以下からダウンロードする
+ *     - https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json
+ * - チャートの期間は、2023/6/16から2023/6/30までとする
+ * - y軸
+ *   - 最大値はアイテムの個数とする
+ *   - 日付におけるclosedの累計の個数を示す
+ * - x軸
+ *   - 日付を示す  
+*/
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body>
+    <h1>Astro</h1>
+    <!-- チャートを描画する -->
+    <canvas id="chart"></canvas>
+    <script>
+      import Chart from 'chart.js/auto'
+      import isBetween from 'dayjs/plugin/isBetween'
+      import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+      import * as dayjs from 'dayjs'
+
+      dayjs.extend(isBetween)
+      dayjs.extend(isSameOrBefore)
+
+      // データを取得する
+      const response = await fetch('https://raw.githubusercontent.com/dzeyelid/github-copilot-playground/main/sample/chart/issues.json')
+      const issues = await response.json()
+
+      // チャートの期間を設定する
+      const startDate = dayjs('2023-06-16')
+      const endDate = dayjs('2023-06-30')
+
+      // 期間中、日毎に、開始時点からその日までのclosedの累計を算出する
+      // {
+      //    date: string,
+      //    count: number
+      // }
+      const data = []
+      for (let date = startDate; date.isSameOrBefore(endDate); date = date.add(1, 'day')) {
+        const count = issues.filter(issue => {
+          return dayjs(issue.closed).isSameOrBefore(date)
+        }).length
+        data.push({
+          date: date.format('YYYY-MM-DD'),
+          count: count
+        })
+      }
+
+      // バーンアップチャートを描画する
+      const ctx = document.getElementById('chart')
+      const chart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: data.map(d => d.date),
+          datasets: [
+            {
+              label: 'Closed',
+              data: data.map(d => d.count),
+              borderColor: 'rgba(255, 99, 132, 1)',
+              backgroundColor: 'rgba(255, 99, 132, 0.5)',
+            }
+          ]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: issues.length
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

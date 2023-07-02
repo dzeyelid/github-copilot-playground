@@ -3,7 +3,9 @@
   "customizations": {
     "vscode": {
       "extensions": [
+        "astro-build.astro-vscode",
         "GitHub.copilot",
+        "GitHub.vscode-github-actions",
         "ms-vscode.live-server"
       ]
     }
