@@ -1,6 +1,9 @@
 # セルフペースド ハンズオン資料
 
-このドキュメントは、[GitHub Copilotとの強力なタッグをいち早く取り入れるハンズオン](https://microsoft-events.connpass.com/event/286473/)で使用する資料です。
+このドキュメントは、以下のイベントで使用する資料です。
+
+- [GitHub Copilotとの強力なタッグをいち早く取り入れるハンズオン](https://microsoft-events.connpass.com/event/286473/)
+- [【オフライン30名限定】GitHub Copilotと一緒に静的サイトCI/CDを作ってみる（ハンズオンワークショップ） – MICUG（マイカグ）](https://micug.jp/event/%e3%80%90%e3%82%aa%e3%83%95%e3%83%a9%e3%82%a4%e3%83%b330%e5%90%8d%e9%99%90%e5%ae%9a%e3%80%91github-copilot%e3%81%a8%e4%b8%80%e7%b7%92%e3%81%ab%e9%9d%99%e7%9a%84%e3%82%b5%e3%82%a4%e3%83%88ci-cd/)
 
 今注目のGitHub Copilotを、実際にどのように動くか手を動かして体験することで、仕組みとコツを体得するためのハンズオンです。
 
@@ -12,7 +15,7 @@
 
 ライセンスをお持ちでない方は、スタッフが用意した「GitHub Copilot for Business」を適用できるOrganizationに招待するので、下記のissueにコメントする形で、GitHubアカウントをスタッフにお伝えください。
 
-- [GitHub Copilotアカウント申請用issue](https://github.com/handson-202306/build-japna-2023-H1-2/issues/1)
+- [GitHub Copilotライセンス付与リクエスト用issue](https://github.com/handson-202306/handson-20230703/issues/1) ※2023/07/03のみ
 
 Organizationに招待されるとメールで通知が届くので、文面に従い必ず承諾してください。承諾が済んだ後、しばらくするとGitHub Copilotのアクセスが有効になります。
 
@@ -26,15 +29,23 @@ Organizationに招待されるとメールで通知が届くので、文面に�
 
 GitHub Codespacesで体験いただく予定です。
 
-下記の「Open in GitHub Codespaces」ボタンを選択すると、このリポジトリをベースにcodespaceの環境が立ち上がります。（※ 前述でGitHub Copilotのライセンスを確認したGitHubアカウントでサインインした状態で進めてください。）
-
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dzeyelid/github-copilot-playground?quickstart=1)
-
-これで立ち上がるcodespaceの環境は、GitHub Copilotの拡張機能がインストールされています。
+下記の手順で立ち上がるcodespaceの環境は、GitHub Copilotの拡張機能がインストールされています。
 
 もしくは、ご自身でご用意できるようでしたら、サポートされる環境をお手元で整えていただいても構いません。このリポジトリをクローンする必要はなく、GitHub Copilotの拡張機能がインストールされていればOKです。
 
 サポートされる環境の解説は、[後述](#サポートされる環境)にて解説します。
+
+#### フォークせず利用する場合
+
+下記の「Open in GitHub Codespaces」ボタンを選択すると、このリポジトリをベースにcodespaceの環境が立ち上がります。（※ 前述でGitHub Copilotのライセンスを確認したGitHubアカウントでサインインした状態で進めてください。）
+
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/dzeyelid/github-copilot-playground?quickstart=1)
+
+#### フォークして利用する場合
+
+フォークしたリポジトリで、下図のようにGitHub Codespacesを起動します。（※ 前述でGitHub Copilotのライセンスを確認したGitHubアカウントでサインインした状態で進めてください。）
+
+![GitHub Codespacesを起動する](../images/launch-codespace.png)
 
 ## 座学
 

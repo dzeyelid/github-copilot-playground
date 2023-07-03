@@ -155,7 +155,7 @@ export default defineConfig({
 });
 ```
 
-つぎに、先ほど移動したディレクトリ`sample/chart/app`で、以下のコマンドを実行します。
+つぎに、先ほど移動したディレクトリ`sample/chart/app`で、以下のコマンドを実行し、ローカルサーサーバーを起動します。
 
 ```bash
 npm run dev -- --host 0.0.0.0
@@ -165,18 +165,26 @@ npm run dev -- --host 0.0.0.0
 
 ![描画したバーンアップチャートの例](../images/barnup-chart-sample.png)
 
+起動したローカルサーバーを停止するには、`Ctrl+C`を押してください。
+
 ## GitHub Pagesにデプロイする
 
-`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`をご自身の環境に合わせて更新しておいてください。
+つぎに、前述で作成したチャートをGitHub Actionsを利用してGitHub Pagesにデプロイしてみましょう！
+
+まず、GitHubリポジトリで、GitHub Pagesを有効化します。作業している（フォークした）リポジトリの「Settings」から「Pages」を開き、「Source」の「Deploy from a branch」のプルダウンから「GitHub Actions」を選択します。
+
+![GitHub Pagesを有効化する](../images/enable-github-pages.png)
+
+つぎに、codespaceに戻り、`sample/chart/app/astro.config.mjs`の`defineConfig`に渡す`site`と`base`のコメントアウトを外し、ご自身の環境に合わせて更新しておいてください。
 
 ```js
 export default defineConfig({
-  site: 'https://dzeyelid.github.io'
-  base: 'github-copilot-playground'
+  site: 'https://dzeyelid.github.io'  // 例: https://{GitHubアカウント名}.github.io
+  base: 'github-copilot-playground'   // 例: {GitHubリポジトリ名}
 });
 ```
 
-つぎに、GitHub Actionsのワークフローを記述します。
+それでは、GitHub Actionsのワークフローを記述していきましょう。
 
 `.github/workflows`の配下に`deploy-chart.yml`を作成します。そこに下記の仕様を記述したコメントを貼り付けます。
 
@@ -276,6 +284,12 @@ jobs:
         uses: actions/deploy-pages@v2
 ```
 
-ここまで準備できたら、リポジトリにプッシュしましょう。（※ ここではハンズオンのため`main`リポジトリに直接プッシュします）
+ここまで準備できたら、リポジトリにプッシュしましょう。プッシュするファイルは以下の通りです。（※ ここではハンズオンのため`main`リポジトリに直接プッシュします）
+
+- `.github/workflows/dpeloy-chart.yml`
+- `sample/chart/app/src/pages/index.astro`
+- `sample/chart/app/astro.config.mjs`
+
+プッシュを契機に、GitHub Actionsのワークフローが実行されます。
 
 GitHub Actionsのワークフローの実行が終わったら、リポジトリの「Settings」の「Pages」からデプロイされたURLを確認し、アクセスして動作を確認してみましょう。
