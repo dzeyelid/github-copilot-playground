@@ -82,14 +82,18 @@ GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。�
 |----|----|
 | `/help` | GitHub Copilot Chatの使い方を確認する |
 | `/tests` | 選択したコードに対するユニットテストを生成する |
-| `/simplify` |  |
-| `/fix` | |
-| `/explain` | |
-| `/extApi` | |
-| `/vscode` | |
-| `/craeteNotebook` | |
-| `/createWorkspace` | |
-| `/clear` | |
+| `/simplify` | 選択したコードをシンプルにする |
+| `/fix` | 選択したコードに含まれる問題の解決方法を提案する |
+| `/explain` | 選択したコードがどう動作するかを説明する |
+| `/extApi` | VS Code拡張機能の開発に関して質問する |
+| `/vscode` | VS Codeに関して質問する |
+| `/craeteNotebook` | 新しいJupyter Notebookを作成する |
+| `/createWorkspace` | 新しいワークスペース（※）の土台となるコードを生成する（Node.jsやPythonなどを指定する） |
+| `/clear` | 会話の履歴を削除する |
+
+※　VS Codeのワークスペース機能を指します。詳しくは、VS Codeのドキュメントをご参照ください。
+
+- [Workspaces in Visual Studio Code](https://code.visualstudio.com/docs/editor/workspaces)
 
 ### クイックチャット
 
