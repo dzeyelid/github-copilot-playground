@@ -2,7 +2,7 @@
 
 GitHub Copilot Chatを知るためのハンズオンです。
 
-現行のGitHub Copilot（code completion）とは異なり、チャット形式でAIのパワーを享受できるGitHub Copilot Chatについて、操作のポイントと、シナリオベースのハンズオンを掲載します。
+現行のGitHub Copilot（code completion）とは異なりチャット形式でAIのパワーを享受できるGitHub Copilot Chatについて、操作のポイントと、シナリオベースのハンズオンを掲載します。
 
 後半のシナリオベースのハンズオンは、GitHub Copilot Chatの特性上、手順に従えば完成までたどり着けるというものではありませんが、実際の作業を想定した流れを再現しています。シナリオを参考に、GitHub Copilot Chatの扱い方の感覚を模索してみてください。
 
@@ -34,7 +34,7 @@ VS CodeでGitHub Copilot Chatを操作するには、以下の3通りの方法�
 
 このUIから、開発に関する疑問を自然言語で質問できます。日本語でも大丈夫です。
 
-![GitHub Copilot Chatをサイドバーで開く](../images/github-copilot-chat-sidebar.png)
+<img src="../images/github-copilot-chat-sidebar.png" alt="GitHub Copilot Chatをサイドバーで開く" width="360">
 
 たとえば、このような質問をしてみましょう。
 
@@ -42,11 +42,10 @@ VS CodeでGitHub Copilot Chatを操作するには、以下の3通りの方法�
 Visual Studio CodeでTypeScriptのシンタックスハイライトを表示するにはどうすればよいですか？
 ```
 
-![GitHub Copilot Chatに質問してみる](../images/github-copilot-chat-ask.png)
+<img src="../images/github-copilot-chat-ask.png" alt="GitHub Copilot Chatに質問してみる" width="360">
+すると、以下のように回答してくれます。この回答は、利用者や、その利用状況やときによって変わります。
 
-すると、以下のように回答してくれます。
-
-![GitHub Copilot Chatが回答してくれる](../images/github-copilot-chat-answer.png)
+<img src="../images/github-copilot-chat-answer.png" alt="GitHub Copilot Chatが回答してくれる" width="360">
 
 ちなみに、開発以外の質問には答えてくれません。
 
@@ -54,34 +53,36 @@ Visual Studio CodeでTypeScriptのシンタックスハイライトを表示す�
 東京の美味しいラーメン屋さんを教えて下さい
 ```
 
+GitHub Copilot Chatは、開いているファイルや選択している部分を認識します。また、どうやら開いているディレクトリも認識しているようです。
+
 回答の中で、コードやbashなどのコマンドを提示してくれることも多いです。コードブロックにカーソルを乗せるすると表示されるメニューから、エディタのカーソル位置に挿入したり、ターミナルで実行したりすることができます。
 
-![GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される](../images/github-copilot-chat-code-block-menu-001.png)
+<img src="../images/github-copilot-chat-code-block-menu-001.png" alt="GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される" width="360">
 
-![GitHub Copilot Chatの回答のコードブロックのメニューの続き（「…」を開く）](../images/github-copilot-chat-code-block-menu-002.png)
+<img src="../images/github-copilot-chat-code-block-menu-002.png" alt="GitHub Copilot Chatの回答のコードブロックのメニューの続き（「…」を開く）" width="360">
 
 | メニュー項目 | 説明 |
 |----|----|
-| Copy | |
-| Insert at Cursor | |
-| Insert Into New File | |
-| Run in Terminal | |
+| Copy | コードをクリップボードにコピーする |
+| Insert at Cursor | エディタのカーソル位置にコードを挿入する |
+| Insert Into New File | 新しいファイルとしてコードを挿入する |
+| Run in Terminal | ターミナルにコードを貼りつける |
 
 GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。会話の履歴を消去するには、図に示す画面上部の「Clear」ボタンを選択します。
 
-![GitHub Copilot Chatの会話履歴を消去する](../images/github-copilot-chat-clear-history.png)
+<img src="../images/github-copilot-chat-clear-history.png" alt="GitHub Copilot Chatの会話履歴を消去する" width="360">
 
 会話には、自然言語の指示だけでなく、コマンドも使えます。入力欄に`/`を打ち込むと、利用できるコマンドが表示されます。
 
-![GitHub Copilot Chatで/を打ち込むとコマンドが利用できる](../images/github-copilot-chat-commands.png)
+<img src="../images/github-copilot-chat-commands.png" alt="GitHub Copilot Chatで/を打ち込むとコマンドが利用できる" width="360">
 
 現時点（2023年10月）で利用できるコマンドは以下の通りです。
 
 | コマンド | 説明 |
 |----|----|
-| `/help` | |
-| `/tests` | |
-| `/simplify` | |
+| `/help` | GitHub Copilot Chatの使い方を確認する |
+| `/tests` | 選択したコードに対するユニットテストを生成する |
+| `/simplify` |  |
 | `/fix` | |
 | `/explain` | |
 | `/extApi` | |
