@@ -43,23 +43,26 @@ Visual Studio CodeでTypeScriptのシンタックスハイライトを表示す�
 ```
 
 <img src="../images/github-copilot-chat-ask.png" alt="GitHub Copilot Chatに質問してみる" width="360">
+
 すると、以下のように回答してくれます。この回答は、利用者や、その利用状況やときによって変わります。
 
 <img src="../images/github-copilot-chat-answer.png" alt="GitHub Copilot Chatが回答してくれる" width="360">
 
-ちなみに、開発以外の質問には答えてくれません。
+ちなみに、以下のような開発以外の質問には答えてくれません。
 
 ```
 東京の美味しいラーメン屋さんを教えて下さい
 ```
 
-GitHub Copilot Chatは、開いているファイルや選択している部分を認識します。また、どうやら開いているディレクトリも認識しているようです。
+GitHub Copilot Chatは、エディタで開いているファイルや選択している部分を認識します。
+
+<img src="../images/github-copilot-chat-explain-selected-code.png" alt="GitHub Copilot Chatに洗濯したコードについて質問してみる" width="640">
 
 回答の中で、コードやbashなどのコマンドを提示してくれることも多いです。コードブロックにカーソルを乗せるすると表示されるメニューから、エディタのカーソル位置に挿入したり、ターミナルで実行したりすることができます。
 
-<img src="../images/github-copilot-chat-code-block-menu-001.png" alt="GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される" width="360">
+<img src="../images/github-copilot-chat-code-block-menu-001.png" alt="GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される" width="560">
 
-<img src="../images/github-copilot-chat-code-block-menu-002.png" alt="GitHub Copilot Chatの回答のコードブロックのメニューの続き（「…」を開く）" width="360">
+<img src="../images/github-copilot-chat-code-block-menu-002.png" alt="GitHub Copilot Chatの回答のコードブロックのメニューの続き（「…」を開く）" width="560">
 
 | メニュー項目 | 説明 |
 |----|----|
