@@ -98,7 +98,33 @@ GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。�
 
 - [Workspaces in Visual Studio Code](https://code.visualstudio.com/docs/editor/workspaces)
 
+### インライン
+
+サイドバーだけでなく、エディタのカーソルの位置もしくは選択している部分に対して、インラインでGitHub Copilot Chatに質問することができます。採用する場合は「Accept」またはEnterキー押下、無視する場合は「Discard」またはフォーカスを外しEscキー押下で操作します。
+
+<img src="../images/github-copilot-chat-inline.png" alt="エディタの選択部分に対して、インラインでGitHub Copilot Chatに質問する" width="640">
+
+差分の表示がわかりやすいため、コードに直接変更を加えたい場合はインラインでの利用がおすすめです。
+
+インラインでGitHub Copilot Chatに問い合わせるには、ショートカット（`Ctrl + i`）を使うか、右クリックのメニューから「Copilot」→「Start Code Chat」を選択します。
+
+<img src="../images/github-copilot-chat-mouse-right-click-in-editor.png" alt="エディタ上を右クリックすることで、GitHub Copilot Chatのメニューを利用できる" width="360">
+
+「Fix this」を選択した場合は、インラインで`/fix`コマンドが実行されます。選ぶ項目によっては、サイドバーで会話が続けられるものもあります。
+
+<img src="../images/github-copilot-chat-inline-fix.png" alt="GitHub Copilot Chatのインラインで/fixコマンドを利用した場合" width="600">
+
 ### クイックチャット
+
+ショートカット（`Ctrl + Shift + i`）を使うと、コマンドパレットのようなUIでクイックチャットを利用できます。
+
+![GitHub Copilot Chatをクイックチャット形式で開く](../images/github-copilot-chat-quick-001.png)
+
+インラインと異なり、クイックチャットでは会話を続けられます。なお、サイドバーでの会話とは独立したセッションのようです。
+
+![クイックチャットでは継続した会話ができる](../images/github-copilot-chat-quick-002.png)
+
+これらのようにさまざまな方法でGitHub Copilot Chatを利用できます。開発の作業に集中しながら、AIのサポートを受けられることでより素早く作業を進められることでしょう。
 
 ## シナリオベースのハンズオン
 
