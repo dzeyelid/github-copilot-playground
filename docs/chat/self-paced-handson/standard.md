@@ -305,7 +305,7 @@ npx tailwindcss init -p
 TailwindCSSを利用し、右記を満たしてください。マージンを10pxに指定する。textareaとdivが横並びになる。textareaの幅を400pxに、ボーダーを明るいオレンジで角丸にする。
 ```
 
-![インラインのCopilot Chatに、TailwindCSSを用いてMarkdownエディタのスタイルを変更するよう指示する](../images/markdown-editor-customize-style.png)
+<img src="../images/markdown-editor-customize-style.png" alt="インラインのCopilot Chatに、TailwindCSSを用いてMarkdownエディタのスタイルを変更するよう指示する" width="600">
 
 開発サーバーを起動してみましょう。
 
