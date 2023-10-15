@@ -118,22 +118,34 @@ GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。�
 
 ショートカット（`Ctrl + Shift + i`）を使うと、コマンドパレットのようなUIでクイックチャットを利用できます。
 
-![GitHub Copilot Chatをクイックチャット形式で開く](../images/github-copilot-chat-quick-001.png)
+<img src="../images/github-copilot-chat-quick-001.png" alt="GitHub Copilot Chatをクイックチャット形式で開く" width="600">
 
 インラインと異なり、クイックチャットでは会話を続けられます。なお、サイドバーでの会話とは独立したセッションのようです。
 
-![クイックチャットでは継続した会話ができる](../images/github-copilot-chat-quick-002.png)
+<img src="../images/github-copilot-chat-quick-002.png" alt="クイックチャットでは継続した会話ができる" width="600">
 
-これらのようにさまざまな方法でGitHub Copilot Chatを利用できます。開発の作業に集中しながら、AIのサポートを受けられることでより素早く作業を進められることでしょう。
+これらのようにさまざまな方法でGitHub Copilot Chatを利用できます。開発の作業に集中しながら、AIのサポートを受けより素早く作業を進められることでしょう。
 
 ## シナリオベースのハンズオン
 
+それでは、基本的な操作を学んだところで、シナリオに沿ってGitHub Copilot Chatとサンプルアプリを作ってみましょう。
+
+簡易的なMarkdownエディタを作ってみることにします。仕様は以下としましょう。
+
 - Nuxt 3のプロジェクトを作成する
-- Markdownで書いてプレビュー表記できるエディタを作る
-- TailwindCSSを適用する
-- プレビューのところに、`@tailwindcss/typography`を導入する
+- Markdownで書いてプレビュー表示できるエディタを作る
+- TailwindCSSを導入する
+- プレビュー部に適当なスタイルがあたるように`@tailwindcss/typography`を導入する
+
+TailwindCSSをはじめ多くのCSSフレームワークは、何も指定していない状態のスタイルをリセットすることでスタイルを統一しています。そうすると、Markdownのプレビューで`<h1>`や`<li>`などのHTML要素が付与されても見た目がフラットなままになってしまいます。そこで、`@tailwindcss/typography`というライブラリを導入し、既定のclassを指定した要素の配下の要素に適当なスタイルがあたるようにします。
+
+なお、冒頭でも述べましたが、手順通りにいかないことも多いと思います。筆者もワークショップでリードする際に、手こずるかもしれません。そんな状況も含めて、GitHub Copilot Chatの特性を体感してみてください。
+
+また、先ほどまで入力していた会話の履歴を削除しておいてください。その方が会話の精度が保たれると思われます。
 
 ### Nuxt 3のプロジェクトを作成する
+
+まず、コードベースを作成しましょう。Nuxt 3のプロジェクトを作成する方法をGitHub Copilot Chat（以後、Copilot Chat）に聞いてみます。
 
 ```
 Nuxt 3のプロジェクトを作るにはどうしたらいいですか？
@@ -145,14 +157,19 @@ Nuxt 3のプロジェクトを作るにはどうしたらいいですか？
 それはNuxt 2の内容です。Nuxt 3ではどうすればよいですか？
 ```
 
-Nuxt 3のプロジェクトを作成するときは、`nuxi`を使います。以下のようなコマンドの実行を促されていれば正解です。（`npm install -g nuxi`として、`nuxi`をインストールさせる場合もあります）
+以下のような`nuxi`を使ったコマンドが回答されれば正解です。Nuxt 3のプロジェクトを作成するときは、`nuxi`を使います。（`npm install -g nuxi`として、`nuxi`をインストールさせてから`nuxi init`を実行させる場合もあります）
 
 ```bash
 # Nuxt 3のプロジェクトをnuxt3-appというディレクトリの中に作成する
-npx nuxt init nuxt3-app
+npx nuxi init nuxt3-app
 ```
 
-ディレクトリに移動して、開発サーバーを起動してみましょう。
+回答に表示されたコードブロックの「Run in Terminal」か、コピー&ペーストしてプロジェクトを作成してください。`nuxi init`を実行すると、対話的にプロジェクトの設定を質問されるので以下のように答えてください。
+
+- `✔ Which package manager would you like to use?`という質問には、`npm`を選択する
+- `✔ Initialize git repository?`という質問には、`No`を選択する
+
+プロジェクトの作成が完了したら、作成したディレクトリに移動して、開発サーバーを起動してみましょう。
 
 ```bash
 # ディレクトリに移動する
@@ -162,10 +179,14 @@ cd nuxt3-app
 npm run dev
 ```
 
+無事にNuxt 3の初期画面が表示されたら成功です。起動した開発サーバーは、`Ctrl + c`で停止できます。
+
 ### Markdownで書いてプレビュー表記できるエディタを作る
 
+つぎに、Markdownでプレビュー表示できるエディタを実装しましょう。そのままCopilot Chatに聞いてみます。
+
 ```
-このプロジェクトにMarkdownのプレビューができるエディタを実装するにはどうすればいいですか？
+作成したプロジェクトにMarkdownのプレビューができるエディタを実装するにはどうすればいいですか？
 ```
 
 `@nuxtjs/markdown-it`を勧めてくることがありますが、複雑になるので使いません。条件を付けて聞きなおしましょう。
@@ -174,7 +195,9 @@ npm run dev
 @nuxtjs/markdown-itを使わずに、Markdownのプレビューができるエディタを実装するにはどうすればいいですか？
 ```
 
-`pages/index.js`に書くように誘導されることが多いようです。
+`markdown-it`や`remarkable`が提示されればそれを参考に実装してみましょう。`markd`については、さっと実装できなさそうです。
+
+実装は`pages/index.js`に書くように誘導されることが多いようです。
 
 だいたい準備できたら開発サーバーを起動してみましょう。
 
@@ -182,7 +205,21 @@ npm run dev
 npm run dev
 ```
 
-すると、Nuxt 3の初期のサンプルページが表示されるのみで、意図した結果にならないかと思います。ここには、`Remove this welcome page by replacing <NuxtWelcome /> in app.vue  with your own code.`のように書かれ、`app.vue`を編集するように促されます。これもGitHub Copilot Chatに聞いてみましょう。
+もし、以下のようにルートが見つからないというエラーが表示される場合は、解決方法をCopilot Chatに聞いてみましょう。
+
+```bash
+[Vue Router warn]: No match found for location with path "/"
+```
+
+```
+上記を実装して開発サーバーを起動すると、[Vue Router warn]: No match found for location with path "/"というエラーが発生しました。どう修正すればよいですか？
+```
+
+`pages/index.vue`がない溜めに発生していたエラーのようです。上記でエディタ用に作成したファイルを`pages/index.vue`に変更して、再度開発サーバーを起動してみましょう。
+
+無事に起動しましたか？
+
+Nuxt 3の初期のサンプルページが表示されるのみで、意図した結果にならないかと思います。この画面には、`Remove this welcome page by replacing <NuxtWelcome /> in app.vue  with your own code.`のように書かれ、`app.vue`を編集するように促されています。どうしたら`pages/index.vue`を表示できるか、これもGitHub Copilot Chatに聞いてみましょう。
 
 ```
 app.vueからpages/index.vueをよびだすにはどうすればいいですか？
@@ -194,64 +231,114 @@ app.vueからpages/index.vueをよびだすにはどうすればいいですか�
 それはNuxt 2の書き方です。Nuxt 3でpages/index.vueを呼び出す方法を教えて下さい。
 ```
 
-正解は、`<NuxtPage />`を使うことです。
+もしくは、独自のコンポーネントを配置するよう回答してきたら、他の方法を聞いてみましょう。
 
-`app.vue`の`<NuxtWelcome />`を`<NuxtPage />`書き換えると動作しましたね？
+```
+もっと簡潔に書けませんか？
+```
 
-![](../images/markdown-editor-first-result.png)
+理想的な正解は、`<NuxtPage />`を使うことです。
+
+またGitHub Copilot Chatの回答が頓珍漢かもしれませんが、一旦以下のように`app.vue`を書き換えて進みましょう。
+
+```diff
+  <template>
+    <div>
+-     <NuxtWelcome />
++     <NuxtPage />
+    </div>
+  </template>
+```
+
+<img src="../images/markdown-editor-first-result.png" alt="Markdownエディタとして動作した状態" width="360">
 
 しかし、ちょっと無骨すぎますね。
 
-TailwindCSSを適用して、見た目のカスタマイズがしやすいようにしましょう。
+TailwindCSSを適用して、見た目をカスタマイズしやすいようにしましょう。以下のようにCopilot Chatに聞いてみます。
 
 ```
 このNuxt 3のプロジェクトにTailwindCSSを適用するにはどうすればよいですか？
 ```
 
-```
+おそらく、下記のようにいくつかのパッケージをインストールすよう促されます。
+
+```bash
 npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
 ```
 
-`-p`はNuxt 3で使わない`postcss.config.js`を生成してくれるのですが、不要です。（生成してしまっても使わないだけなので大丈夫です）
+そして、tailwindCSSの設定ファイルを生成します。おそらく`-p`オプションが指定されて、`postcss.config.js`が生成されますが、Nuxt 3では不要です。後の手順で解消しましょう。
 
-```
-npx tailwindcss init
+```bash
+npx tailwindcss init -p
 ```
 
-わかりやすいように、いくつか`class`を付与しておきましょう。エディタの実装は、おそらく下記のように`<textarea>`や`<div v-html>`で構成されていると思います。
+`tailwind.config.js`と`postcss.config.js`の設定を促されるので、対応します。
+
+また、プロジェクトにスタイルシートを適用するために、`styles/main.css`を作成し、下記を記述します。
+
+```css
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+```
+
+作成した`styles/main.css`を参照するように、`nuxt.config.js`を更新します。
+
+```diff
+  export default defineNuxtConfig({
+    devtools: { enabled: true },
++   css: ['~/styles/main.css'],
+    ...
+  })
+```
+
+さて、tailwindCSSが適用できたかわかりやすいように、いくつか*class*を付与しておきましょう。エディタのを実装したコードには、おそらく下記のように`<textarea>`や`<div v-html>`で構成されていると思います。
 
 ```vue
 <textarea ...></textarea>
 <div v-html="..."></div>
 ```
 
-この部分を選択し、インラインでCopilot Chatに見た目の変更を指示してみましょう。
+この部分を選択し、インラインでCopilot Chatに指示してみましょう。見た目の変更を少し細かく指示してみます。
 
 ```
-TailwindCSSを利用し、textareaとdivが横並びになるように、またtextareaの幅を400pxに、ボーダーを明るいオレンジで角丸にしてください。
+TailwindCSSを利用し、右記を満たしてください。マージンを10pxに指定する。textareaとdivが横並びになる。textareaの幅を400pxに、ボーダーを明るいオレンジで角丸にする。
 ```
 
-いったんそのまま進めると、以下のような警告が表示され、TailwindCSSが適用されていないことがわかるので、このエラーについて聞いてみましょう。
+![インラインのCopilot Chatに、TailwindCSSを用いてMarkdownエディタのスタイルを変更するよう指示する](../images/markdown-editor-customize-style.png)
+
+開発サーバーを起動してみましょう。
+
+前の手順で`postcss.config.js`を作成した場合、以下のような警告が表示され、TailwindCSSが適用されません。
 
 ```bash
 WARN  Using postcss.config.js is not supported together with Nuxt. Use options.postcss instead. You can read more in https://nuxt.com/docs/api/configuration/nuxt-config#postcss.
 ```
 
-`/explain`の後ろに警告文を渡します。
+まずは、この警告について、Copilot Chatに聞いてみましょう。`/fix`コマンドを使ってこの警告を渡します。
 
 ```
-/explain WARN  Using postcss.config.js is not supported together with Nuxt. Use options.postcss instead. You can read more in https://nuxt.com/docs/api/configuration/nuxt-config#postcss.
+/fix WARN  Using postcss.config.js is not supported together with Nuxt. Use options.postcss instead. You can read more in https://nuxt.com/docs/api/configuration/nuxt-config#postcss.
 ```
 
-うまく回答を得られないときは、以下のように質問を変えてみるのも手かもしれません。
+`postcss.config.js`から`nuxt.config.js`に設定を移行するよう促されると思います。以下のような設定が正解です。`build`などの階層を示してくることが多いのですが、ここは諦めて以下の設定で進みましょう。
 
+```js
+export default defineNuxtConfig({
+  devtools: { enabled: true },
+  css: ['~/styles/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {},
+    },
+  },
+})
 ```
-Nuxt 3のpostcssの設定について教えて
-```
 
-正しく設定できたら、見た目の変更が反映されているはずです。
+開発サーバーを起動し直します。正しく設定できていれば、見た目の変更が反映されているはずです。
 
-ただし、Markdownで`# 見出し`や`- 箇条書き`と記述しても、プレビューの`<h1>`や`<li>`などの装飾が表示されません。これは、TailwindCSSは明示的に`class`を指定していない場合はフラットな表示になるように装飾をリセットしているためです。
+ただし、Markdownで`# 見出し`や`- 箇条書き`と記述しても、プレビューの`<h1>`や`<li>`などの装飾が表示されません。これは、TailwindCSSは明示的に*class*を指定していない場合はフラットな表示になるようにスタイルをリセットしているためです。
 
 これを解消する方法をGitHub Copilot Chatに聞いてみましょう。
 
@@ -267,18 +354,15 @@ npm install @tailwindcss/typography
 
 `tailwind.config.js`の`plugins`に`require('@tailwindcss/typography')`を追加します。
 
-```js
-module.exports = {
-  theme: {
-    // ...
-  },
-  plugins: [
-    // ↓ここから
-    require('@tailwindcss/typography'),
-    // ↑ここまでを反映する
-    // ...
-  ],
-}
+```diff
+  module.exports = {
+    theme: {
+      // ...
+    },
+    plugins: [
++     require('@tailwindcss/typography'),
+    ],
+  }
 ```
 
 そして、いい感じに装飾したいHTML要素に対して`prose`クラスを適用します。
@@ -286,3 +370,9 @@ module.exports = {
 ```vue
 <div v-html="..." class="prose"></div>
 ```
+
+開発サーバーを起動して確認してみましょう。いい感じに装飾されたMarkdownエディタができあがりましたか？
+
+<img src="../images/markdown-editor-with-nice-style.png" alt="いい感じの装飾が適用されたMarkdownエディタが完成した" width="600">
+
+まだ見た目がいまいちですし、なかなか思うように作れなかった方もいらっしゃるかもしれません。残りの時間は自由に触ってみてください！
