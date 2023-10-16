@@ -1,12 +1,19 @@
 {
-  "image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+  "image": "mcr.microsoft.com/devcontainers/base:jammy",
+  "features": {
+    "ghcr.io/devcontainers/features/node": {
+      "version": "lts"
+    }
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "astro-build.astro-vscode",
         "GitHub.copilot",
-        "GitHub.vscode-github-actions",
-        "ms-vscode.live-server"
+        "GitHub.copilot-chat",
+        "GitHub.vscode-pull-request-github",
+        "ms-vscode.live-server",
+        "Vue.volar"
       ]
     }
   }
