@@ -154,3 +154,102 @@ const add
 演習では割愛しますが、編集中のファイルとは別に、同じ拡張子のファイルをタブで開くと、その内容も加味して候補を提案してくれるようになります。ぜひ試してみてください。
 
 ## GitHub Copilot Chat on Visual Studio Code
+
+GitHub Copilot Chatは、チャットインタフェースを介してGitHub Copilot（LLM）と対話できる機能です。
+
+このハンズオンでは、Visual Studio Codeでの利用をご紹介します。
+
+チャットインタフェースを利用するには、様々な方法があります。
+
+- サイドバー（`Ctrl + Alt + i`）
+- インライン（`Ctrl + i`）
+- クイックチャット（`Ctrl + Shift + i`）
+
+### サイドバー
+
+左のGitHub Copilot Chatのアイコンを選択すると開く画面です。おそらく、GitHub Copilot Chatを使うときにメインで使う画面になるでしょう。
+
+このUIから、開発に関する疑問を自然言語で質問できます。日本語でも大丈夫です。
+
+<img src="../../chat/images/github-copilot-chat-sidebar.png" alt="GitHub Copilot Chatをサイドバーで開く" width="360">
+
+また、後述のコマンドも利用することができます。
+
+![]()
+
+GitHub Copilot Chatは、エディタの状態によってコンテキストを取り込みます。例えば、ファイルを編集中であれば、そのファイルの表示されている行をコンテキストとして扱います。
+
+![]()
+
+選択している場合は、その選択範囲がコンテキストとして扱われます。
+
+![]()
+
+また、コマンド（後述）の`@workspace`を指示すると、開いているディレクトリを対象にコンテキストを取り込みます。（必ずしもすべての情報を網羅するわけではありません。）
+
+![]()
+
+回答の中で、コードやbashなどのコマンドを提示してくれることも多いです。コードブロックにカーソルを乗せるすると表示されるメニューから、エディタのカーソル位置に挿入したり、ターミナルで実行したりすることができます。
+
+<img src="../../chat/images/github-copilot-chat-code-block-menu-001.png" alt="GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される" width="560">
+
+<img src="../../chat/images/github-copilot-chat-code-block-menu-002.png" alt="GitHub Copilot Chatの回答のコードブロックのメニューの続き（「…」を開く）" width="560">
+
+| メニュー項目 | 説明 |
+|----|----|
+| Copy | コードをクリップボードにコピーする |
+| Insert at Cursor | エディタのカーソル位置にコードを挿入する |
+| Insert Into New File | 新しいファイルとしてコードを挿入する |
+| Run in Terminal | ターミナルにコードを貼りつける |
+
+GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。会話の履歴を消去するには、図に示す画面上部の「Clear」ボタンを選択します。
+
+<img src="../../chat/images/github-copilot-chat-clear-history.png" alt="GitHub Copilot Chatの会話履歴を消去する" width="360">
+
+会話には、自然言語の指示だけでなく、コマンドも使えます。入力欄に`/`を打ち込むと、利用できるコマンドが表示されます。
+
+<img src="../../chat/images/github-copilot-chat-commands-20231117.png" alt="GitHub Copilot Chatで/を打ち込むとコマンドが利用できる" width="360">
+
+現時点（2023年11月）で利用できるコマンドは以下の通りです。
+
+| コマンド | 説明 |
+|----|----|
+| `/api` | VS Code拡張機能の開発に関して質問する |
+| `/explain` | 選択したコードがどう動作するかを説明する |
+| `/fix` | 選択したコードに含まれる問題の解決方法を提案する |
+| `/new` | 新しいワークスペース（※）の土台となるコードを生成する（Node.jsやPythonなどを指定する） |
+| `/newNotebook` | 新しいJupyter Notebookを作成する |
+| `/terminal` | ターミナルに関して質問する |
+| `/tests` | 選択したコードに対するユニットテストを生成する |
+| `/help` | GitHub Copilot Chatの使い方を確認する |
+| `/clear` | 会話の履歴を削除する |
+
+### インライン
+
+サイドバーだけでなく、エディタのカーソルの位置もしくは選択している部分に対して、インラインでGitHub Copilot Chatに質問することができます。採用する場合は「Accept」またはEnterキー押下、無視する場合は「Discard」またはフォーカスを外しEscキー押下で操作します。
+
+<img src="../../chat/images/github-copilot-chat-inline.png" alt="エディタの選択部分に対して、インラインでGitHub Copilot Chatに質問する" width="640">
+
+差分の表示がわかりやすいため、コードに直接変更を加えたい場合はインラインでの利用がおすすめです。
+
+インラインでGitHub Copilot Chatに問い合わせるには、ショートカット（`Ctrl + i`）を使うか、右クリックのメニューから「Copilot」→「Start Code Chat」を選択します。
+
+<img src="../../chat/images/github-copilot-chat-mouse-right-click-in-editor.png" alt="エディタ上を右クリックすることで、GitHub Copilot Chatのメニューを利用できる" width="360">
+
+「Fix this」を選択した場合は、インラインで`/fix`コマンドが実行されます。選ぶ項目によっては、サイドバーで会話が続けられるものもあります。
+
+<img src="../../chat/images/github-copilot-chat-inline-fix.png" alt="GitHub Copilot Chatのインラインで/fixコマンドを利用した場合" width="600">
+
+### クイックチャット
+
+ショートカット（`Ctrl + Shift + i`）を使うと、コマンドパレットのようなUIでクイックチャットを利用できます。
+
+<img src="../../chat/images/github-copilot-chat-quick-001.png" alt="GitHub Copilot Chatをクイックチャット形式で開く" width="600">
+
+インラインと異なり、クイックチャットでは会話を続けられます。なお、サイドバーでの会話とは独立したセッションのようです。
+
+<img src="../../chat/images/github-copilot-chat-quick-002.png" alt="クイックチャットでは継続した会話ができる" width="600">
+
+これらのようにさまざまな方法でGitHub Copilot Chatを利用できます。開発の作業に集中しながら、AIのサポートを受けより素早く作業を進められることでしょう。
+
+### 演習
