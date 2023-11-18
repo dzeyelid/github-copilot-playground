@@ -2,7 +2,7 @@
 
 ## はじめに
 
-本ハンズオンでは、GitHub Copilotの概要をご紹介してから、code completionとchatについてポイントをご紹介します。
+本ハンズオンでは、GitHub Copilotの概要をご紹介してから、GitHub Copilot(code completion)やGitHub Copilot Chatについてポイントをご紹介します。
 
 ## GitHub Copilotとは
 
@@ -34,13 +34,13 @@ GitHub Copilotは、GitHubが開発した開発に特化したAIアシスタン�
 | GitHub Copilot Enterprise | 最近発表されたプラン。Organization単位、Enterprise単位での利用。後述。 |
 
 #### GitHub Copilot Enterpriseについて
-GitHub Copilot Enterpriseは、GitHub Universe 2023で発表されました。GitHub Copilot Businessの機能に加え、以下のようなGA前に試用するには、waitlistの申請が開始されています。
+GitHub Copilot Enterpriseは、GitHub Universe 2023で発表されました。GitHub Copilot Businessの機能に加え、以下のような組織の資産を注入できる機能が含まれるようです。GA前に試用するには、waitlistの申請が開始されています。
 
 - Copilot Chat in GitHub.com
 - Documentation search and summaries
 - Copilot pull request summaries
 - Code review skills
-- Fine-tuned models（Currently in preview. Copilot Enterprise grants you access to customization for fine-tuned models (available in 2024).）
+- Fine-tuned models（現在はプレビュー。2024に利用可能予定。）
 
 詳しくは下記サービスサイトやドキュメントをご参照ください。
 
@@ -53,7 +53,7 @@ GitHub Copilot Enterpriseは、GitHub Universe 2023で発表されました。Gi
 
 ### GitHub Copilotのライセンスを確認する
 
-GitHub Copilotを利用するにはまず、個人向けは「Individuals」の契約を、業務向けには「Business」のライセンスを割り当てる必要があります。
+GitHub Copilotを利用するにはまず、個人向けは「Individuals」の契約を、業務向けには「Business」のライセンスを割り当てる必要があります。　
 
 本ハンズオンでは、端末でサインイン済みの各アカウントに対して「Business」のライセンスを割り当てており、GitHubアカウントの設定から確認することができます。
 
@@ -65,23 +65,23 @@ GitHub Copilotを利用するにはまず、個人向けは「Individuals」の�
 
 ### IDEの拡張機能を確認する
 
-GitHub CopilotにおけるサポートされるIDEは下記の通りです。
+本ハンズオンでは、IDE上におけるGitHub Copilot(code completion)やGitHub Copilot Chatの機能を体験いただきます。サポートされるIDEは下記の通りです。
 
 | 機能 | サポートされるIDE |
 |----|----|
 | GitHub Copilot(code completion) | Visual Studio Code, Visual Studio, JetBrains IDEs, Vim/Neovim, Azure Data Studio |
 | GitHub Copilot Chat | Visual Studio Code, Visual Studio, JetBrains IDEs(Private beta) |
 
-このハンズオンでは、Visual Studio Code(VS Code)を利用します。GitHub CopilotおよびGitHub Copilot Chatは、IDEに拡張機能をインストールすることで利用できます。（冒頭の指示によりGitHub Codespacesで立ち上げた環境には、既にインストール済みです）
+このハンズオンでは、Visual Studio Code(VS Code)を利用します。GitHub Copilot(code completion)およびGitHub Copilot Chatは、IDEに拡張機能をインストールすることで利用できます。（冒頭の指示によりGitHub Codespacesで立ち上げた環境には、既にインストール済みです）
 
 - [GitHub Copilot - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 - [GitHub Copilot Chat - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 
 ## GitHub Copilot(code completion)
 
-GitHub Copilot(code completion)は、カーソル位置に、AIによるコード補完の候補を表示します。
+GitHub Copilot(code completion)は、カーソル位置に、AIによるコード補完の候補を提案してくれる機能です。
 
-試しに、`sample/nodejs/main.js`を開き、コードを書き始めてみましょう。以下を、コピー＆ペーストではなく、入力してみてください。
+試しに、`sample/nodejs/main.js`を開き、コードを書き始めてみましょう。以下のコードを、コピー＆ペーストではなく、入力してみてください。
 
 ```js
 // 四則演算を行う
@@ -159,7 +159,7 @@ GitHub Copilot Chatは、チャットインタフェースを介してGitHub Cop
 
 このハンズオンでは、Visual Studio Codeでの利用をご紹介します。
 
-チャットインタフェースを利用するには、様々な方法があります。
+GitHub Copilot Chatを利用するには、様々な方法があります。
 
 - サイドバー（`Ctrl + Alt + i`）
 - インライン（`Ctrl + i`）
@@ -173,23 +173,19 @@ GitHub Copilot Chatは、チャットインタフェースを介してGitHub Cop
 
 <img src="../../chat/images/github-copilot-chat-sidebar.png" alt="GitHub Copilot Chatをサイドバーで開く" width="360">
 
-また、後述のコマンドも利用することができます。
-
-![]()
-
 GitHub Copilot Chatは、エディタの状態によってコンテキストを取り込みます。例えば、ファイルを編集中であれば、そのファイルの表示されている行をコンテキストとして扱います。
 
-![]()
+<img src="../../chat/images/github-copilot-chat-scope-001.png" alt="GitHub Copilot Chatが参照する部分（編集中のファイルの表示されている行）" width="440">
 
 選択している場合は、その選択範囲がコンテキストとして扱われます。
 
-![]()
+<img src="../../chat/images/github-copilot-chat-scope-002.png" alt="GitHub Copilot Chatが参照する部分（選択している行）" width="440">
 
 また、コマンド（後述）の`@workspace`を指示すると、開いているディレクトリを対象にコンテキストを取り込みます。（必ずしもすべての情報を網羅するわけではありません。）
 
-![]()
+<img src="../../chat/images/github-copilot-chat-scope-003.png" alt="GitHub Copilot Chatが参照する部分（@workspace）" width="360">
 
-回答の中で、コードやbashなどのコマンドを提示してくれることも多いです。コードブロックにカーソルを乗せるすると表示されるメニューから、エディタのカーソル位置に挿入したり、ターミナルで実行したりすることができます。
+さて、回答の中で、コードやbashなどのコマンドを提示してくれることも多いです。コードブロックにカーソルを乗せるすると表示されるメニューから、エディタのカーソル位置に挿入したり、ターミナルで実行したりすることができます。
 
 <img src="../../chat/images/github-copilot-chat-code-block-menu-001.png" alt="GitHub Copilot Chatの回答のコードブロックにオンカーソルするとメニューが表示される" width="560">
 
