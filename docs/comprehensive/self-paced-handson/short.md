@@ -249,3 +249,19 @@ GitHub Copilot Chatは会話の文脈を考慮して回答してくれます。�
 これらのようにさまざまな方法でGitHub Copilot Chatを利用できます。開発の作業に集中しながら、AIのサポートを受けより素早く作業を進められることでしょう。
 
 ### 演習
+
+それでは、GitHub Copilot Chatで好きに遊んでみましょう！
+
+冒頭で立ち上げたGitHub Codespacesの環境には主要な言語がインストールされています。
+
+お題に悩む方は以下をご参考ください。
+
+- コマンドラインで遊べるじゃんけんを作りたい
+- コマンドラインで遊べるマスターマインドを作りたい
+- HTMLとJavaScriptでリバーシゲームを作りたい
+
+コマンドラインが実装簡単です。もの足りない方は、HTMLと組み合わせてGUIで作ってみるのも面白いです。
+
+この環境には、HTMLをプレビューできる拡張機能をインストールしているので、HTMLファイルを開いてエディタ右上のプレビューアイコン（見開きのノートに虫眼鏡をかざしてるアイコン）を選択すると、VS Code内のブラウザでプレビューできます。
+
+- 参考: [Live Preview - Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server)
