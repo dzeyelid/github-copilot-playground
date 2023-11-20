@@ -16,7 +16,7 @@ GitHub Copilotは、GitHubが開発した開発に特化したAIアシスタン�
 | **GitHub Copilot Chat** | Public beta, 12月GA予定 | IDEまたはモバイルアプリ（※2）上で、会話形式でAIによるコード生成、解説を支援する。LLMモデルはGPT-4（※3）。 |
 | **Copilot in the CLI** | Public beta | AIによるコマンド生成支援 |
 | GitHub Copilot Chat in GitHub.com | GitHub Enterpriseに内包予定 | GitHub.com上でGitHub Copilot Chatを利用できる。指定したリポジトリをコンテキストに含められる。 |
-| GitHub Copilot pull request summaries | GitHub Enterpriseに内包予定 |  |
+| GitHub Copilot pull request summaries | GitHub Enterpriseに内包予定 | プルリクエストのdescriptionに、AIによる変更内容サマリを提示してくれる。 |
 
 - ※1 2023年6月の情報。
   - 参考: [GitHub Copilot - June 29th Update - The GitHub Blog](https://github.blog/changelog/2023-06-29-copilot-june-2023-update/#code-completion-improvements)
