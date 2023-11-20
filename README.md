@@ -2,25 +2,9 @@
 
 GitHub Copilotのデモやハンズオンの資料を置くリポジトリです。
 
-## GitHub Copilot(code completion)
+## セルフペースド ハンズオン
 
-### セルフペースド ハンズオン
-
-セルフペースド ハンズオンは、ボリュームに応じて2種類あります。
-
-- [ショート版（15分）](./docs/code-completion/self-paced-handson/short.md)
-- [拡大版](./docs/code-completion/self-paced-handson/advanced.md)
-- [追加コンテンツ: 静的サイトのデプロイ](./docs/code-completion/self-paced-handson/deploy-chart.md)
-
-### 過去のデモ資料
-
-- 2023-06-02 [[自由研究] GitHub Copilot ってぶっちゃけどう書くといいの？](./docs/code-completion/demo.md)
-
-## GitHub Copilot Chat
-
-### セルフペースド ハンズオン
-
-まず先に、ハンズオン環境として、GitHub Codespacesのインスタンスを立ち上げてます。
+まず先に、ハンズオン環境として、GitHub Codespacesのインスタンスを立ち上げます。
 
 <img src="https://github.com/dzeyelid/github-copilot-playground/assets/977117/47623e12-034e-46b8-b221-cd24199417d5" alt="GitHub Codespacesのインスタンスを立ち上げる" width="600">
 
@@ -34,4 +18,24 @@ GitHub Copilotのデモやハンズオンの資料を置くリポジトリです
 
 ここまで準備ができたら、以下から資料へお進みください。
 
+### 総合版
+
+- [ショート版（15分）](./docs/comprehensive/self-paced-handson/short.md)
+
+### GitHub Copilot(code completion)
+
+セルフペースド ハンズオンは、ボリュームに応じて2種類あります。
+
+- [ショート版（15分）](./docs/code-completion/self-paced-handson/short.md)
+- [拡大版](./docs/code-completion/self-paced-handson/advanced.md)
+- [追加コンテンツ: 静的サイトのデプロイ](./docs/code-completion/self-paced-handson/deploy-chart.md)
+
+### GitHub Copilot Chat
+
 - [通常版](./docs/chat/self-paced-handson/standard.md)
+  - 残念ながら、こちらに掲載しているシナリオは、あまり想定通りに動きません。準備の段階で使っていた環境では動作していたのですが、以降はその通りに動作しなかったという事態でした。その経緯は下記動画で話しているので、失敗から学ぶ観点でご覧いただけるとうれしいです😂
+    - [GitHub Copilot Chatがとある環境だけ賢い動作をしたせいでデモ失敗したので検証 - YouTube](https://youtu.be/EIvHkSOTbqo?si=dR9urAA3mmcJtbsp)
+
+## 過去のデモ資料
+
+- 2023-06-02 [[自由研究] GitHub Copilot ってぶっちゃけどう書くといいの？](./docs/code-completion/demo.md)
