@@ -1,5 +1,5 @@
-# Documentation on Copilot File Management
+# Copilotのファイル管理機能について
 
-Copilot can now create and edit files in your repositories. This new feature enhances the usability of Copilot, allowing for more efficient project management.
+Copilotは、リポジトリ内でファイルの作成や編集ができるようになりました。この新機能により、Copilotの利便性が向上し、より効率的なプロジェクト管理が可能になります。
 
-For more information, check out the official announcement: [GitHub Changelog](https://github.blog/changelog/2025-07-31-copilot-chat-unlocks-new-repository-management-skills/).
+詳細については、公式アナウンスをご覧ください: [GitHub Changelog](https://github.blog/changelog/2025-07-31-copilot-chat-unlocks-new-repository-management-skills/)
