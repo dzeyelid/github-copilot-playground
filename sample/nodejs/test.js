@@ -11,7 +11,7 @@ const testAddTwoTimes = () => {
   for (const [time1, time2, expected] of cases) {
     const actual = addTwoTimes(time1, time2);
     if (actual !== expected) {
-      console.log('NG');
+      console.log(`NG: addTwoTimes('${time1}', '${time2}') = '${actual}', expected '${expected}'`);
       process.exitCode = 1;
       return;
     }
