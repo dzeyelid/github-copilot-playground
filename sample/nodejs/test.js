@@ -2,15 +2,22 @@ const addTwoTimes = require('./main.js')
 
 // addTwoTimesのテストをする
 const testAddTwoTimes = () => {
-  const time1 = '24:00:01';
-  const time2 = '00:59:59';
-  const expected = '25:00:00';
-  const actual = addTwoTimes(time1, time2);
-  if (actual !== expected) {
-    console.log('NG');
-  } else {
-    console.log('OK');
+  const cases = [
+    ['24:00:01', '00:59:59', '25:00:00'],
+    ['01:00:00', '02:00:00', '03:00:00'],
+    ['00:00:59', '00:00:01', '00:01:00'],
+  ];
+
+  for (const [time1, time2, expected] of cases) {
+    const actual = addTwoTimes(time1, time2);
+    if (actual !== expected) {
+      console.log('NG');
+      process.exitCode = 1;
+      return;
+    }
   }
+
+  console.log('OK');
 }
 
 testAddTwoTimes()
